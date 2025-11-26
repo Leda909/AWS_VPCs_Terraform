@@ -1,7 +1,6 @@
-After cd into the right folder: `2_make_EC2` in this repo
+cd into the right folder: *2_make_EC2*
 
-After run in your terminal:
-
+Then run in your terminal:
 Initalize terraform:<br>
 `terraform init`
 
@@ -15,7 +14,7 @@ Next command:
 To apply the terraform plan<br>
 `terraform apply`
 
-When finish destroy
+When finish destroy<br>
 `terraform destroy`
 
 IMPORTANT! write every terraform state files in the .gitignore to not push online!
