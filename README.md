@@ -1,2 +1,2 @@
-# AWS_VPCs_-_Terraform
-Repo for learning about AWS
+# AWS_VPCs_Terraform
+Repo for learning about AWS VPC and Terraform
