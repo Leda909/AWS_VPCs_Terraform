@@ -1,6 +1,11 @@
 # ADDED BY ME
 3_auto_restart_AMI_App_with_MongoDB
 
+# terraform staffs
+day3/terraform/2_make_EC2/.terraform
+day3/terraform/2_make_EC2/.terraform.lock.hcl
+day3/terraform/2_make_EC2/terraform.tfstate
+day3/terraform/2_make_EC2/terraform.tfstate.backup
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

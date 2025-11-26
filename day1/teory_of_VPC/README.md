@@ -75,7 +75,7 @@ Every AWS account comes with a default VPC in each region. Here's what it includ
 
 # The core components:
 
-## a) SUBNET
+## SUBNET
 
 A **subnet** is a segmented range of IP addresses within a VPC. Subnets allow you to partition your VPC's IP address space and place resources in different network segments. Each subnet resides entirely within one Availability Zone and can be designated as public (internet-accessible) or private (isolated).
 
@@ -89,7 +89,7 @@ Subnets are like different floors in a building, in which the ground floor is th
 * One AZ:<br>Each subnet lives in exactly one Availability Zone
 * CIDR Block:<br>Each subnet has its own IP range (e.g., 10.0.1.0/24)
 
-## b) INTERNET GATWAY 
+## INTERNET GATWAY 
 
 An **Internet Gateway (IGW)** is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. It performs Network Address Translation (NAT) for instances with public IPv4 addresses and enables both inbound and outbound internet traffic.
 
@@ -103,7 +103,7 @@ The Internet Gateway is like the main door to your house (VPC)! Without this doo
 * Scalable:<br> Automatically scales, no bandwidth constraints
 * Free:<br> No charge for the IGW itself (only data transfer)
 
-## c) ROUTE TABLES
+## ROUTE TABLES
 
 A **Route Tables** contains a set of rules (routes) that determine where network traffic from your subnet or gateway is directed. Each route specifies a destination CIDR block and a target (e.g., Internet Gateway, NAT Gateway, VPC Peering connection). Every subnet must be associated with a route table.
 
@@ -117,7 +117,7 @@ A Route Table is like a GPS or map with directions! When a letter (data packet) 
 * Scalable:<br>Automatically scales, no bandwidth constraints
 * Free:<br>No charge for the IGW itself (only data transfer)
 
-## d) A NAT (Network Address Translation) Gateway / NAT INSTANCE
+## A NAT (Network Address Translation) Gateway / NAT INSTANCE
 
 A **NAT (Network Address Translation) Gateway** enables instances in private subnets to initiate outbound connections to the internet while preventing inbound connections initiated from the internet. It performs port address translation, allowing multiple private instances to share a single public IP address for outbound traffic.
 
@@ -132,7 +132,17 @@ NAT Gateway helps to connect for your private subnet with the internet - eg. dow
 * Managed service:<br> AWS-managed (NAT Gateway) vs self-managed (NAT Instance)
 * High availability:<br> Use one per AZ for redundancy
 
+## SECURITY GROUPS
 
+## NETWORK ACLs (NACLs)
+
+## VPC ENDPOINTS
+
+## VPC PEERING
+
+## CIDR BLOCKS
+
+## 
 
 IP addresses:
 - Public vs Private IP addresses
