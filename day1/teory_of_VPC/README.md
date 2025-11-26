@@ -15,50 +15,30 @@ A VPC is a software-defined network within Cloud that provides isolated network 
 
 ### Example of Node App EC2 connected to MongoDB EC2 (in both case use IAM EC2)
 
-<img src="../teory_of_VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 130%;">
+<img src="../teory_of_VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 150%;">
 
-<!-- <div style="display: flex; justify-content: space-around;">
-    <figure style="margin: 5px;">
-        <img src="../teory_of_VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 90%;">
-        <figcaption style="text-align: center;">Road map of net to Node App with DB</figcaption>
-    </figure>
-    <figure style="margin: 5px;">
-        <img src="../teory_of_VPC/images/VPC_3.png" alt="Image 2 Description" style="width: 90%;">
-        <figcaption style="text-align: center;">Journey of a User Request</figcaption>
-    </figure>
-    <figure style="margin: 5px;">
-        <img src="../teory_of_VPC/images/VPC_4.png" width="90%" alt="What is VPC"><figcaption style="text-align: center;">Diagram of Node.js and MongoDB in a VPC</figcaption>
-    </figure>
-</div> -->
+#### **Why This Architecture Works?**
 
-#### **Why This Architecture Works:**
-<ul>
-    <li>Layered Security (Defense in Depth)
-        <ul>
-            <li>Even if someone hacks the load balancer, they can't reach the database</li>
-            <li>Each layer only trusts specific previous layers</li>
-        </ul>
-    </li>
-    <li>Principle of Least Privilege
-        <ul>
-            <li>Node.js can ONLY talk to MongoDB (not the internet)</li>
-            <li>MongoDB can ONLY talk to Node.js (not even the internet)</li>
-        </ul>
-    </li>
-    <li>High Availability
-        <ul>
-            <li>If you deploy across 2-3 Availability Zones, your app stays up even if one data center fails</li>
-        </ul>
-    </li>
-    <li>Scalability
-        <ul>
-            <li>Add more Node.js instances behind the load balancer as traffic grows</li>
-            <li>Database can be scaled independently</li>
-        </ul>
-    </li>
-</ul>
+1. Layered Security (Defense in Depth)
 
-## Why use, create or customise them?
+    * Even if someone hacks the load balancer, they can't reach the database
+    * Each layer only trusts specific previous layers
+
+2. Principle of Least Privilege
+    
+    * Node.js can ONLY talk to MongoDB (not the internet)
+    * MongoDB can ONLY talk to Node.js (not even the internet)
+
+3. High Availability
+    
+    * If you deploy across 2-3 Availability Zones, your app stays up even if one data center fails
+
+4. Scalability
+    
+    * Add more Node.js instances behind the load balancer as traffic grows
+    * Database can be scaled independently
+
+### Why use, create or customise them?
 
 **Key Reasons to Customize VPCs:**
 
@@ -87,7 +67,7 @@ A VPC is a software-defined network within Cloud that provides isolated network 
     * Implement NAT gateways only where needed
     * Optimize network architecture for traffic patterns
 
-## Default VPC
+### Default VPC
 
 Every AWS account comes with a default VPC in each region. Here's what it includes:
 
@@ -95,26 +75,19 @@ Every AWS account comes with a default VPC in each region. Here's what it includ
 
 ## The core components:
 
-### a) SUBNETs
+## a) SUBNET
 
-<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
-    <figure style="margin: 0; flex: 1; text-align: center;">
-        <img src="../teory_of_VPC/images/subnet.png" width="95%" alt="VPC Subnets">
-        <figcaption style="margin: 5px; text-align: left;">Example subnets:</figcaption>
-        <img src="../teory_of_VPC/images/subnet_2.png" width="95%" alt="VPC Subnets">
-    </figure>
-    <div style="margin: 0; flex: 2;">
-        A <snap style="font-weight: bold;">subnet</snap> is a segmented range of IP addresses within a VPC. Subnets allow you to partition your VPC's IP address space and place resources in different network segments. Each subnet resides entirely within one Availability Zone and can be designated as public (internet-accessible) or private (isolated).
-        <div style="margin: 15px 0;">Symbolic simple: Subnets are like different floors in a building, in which the ground floor is the public subnet with doors to the street, so visitors can come in. Then the basement floor would be a private subnet has no street doors, it's only for people already inside the building. You put your web servers on the ground floor and your secret database in the basement.</div>
-        <div style="margin: 5px;">Key Points:</div>
-        <ul>
-            <li><snap style="font-weight: bold;">Public Subnet:</snap> Has a route to Internet Gateway, resources get public IPs</li>
-            <li><snap style="font-weight: bold;">Private Subnet:</snap> No direct internet access, resources only have private IPs</li>
-            <li><snap style="font-weight: bold;">One AZ:</snap> Each subnet lives in exactly one Availability Zone</li>
-            <li><snap style="font-weight: bold;">CIDR Block:</snap> Each subnet has its own IP range (e.g., 10.0.1.0/24)</li>
-        </ul>
-    </div>
-</div>
+A **subnet** is a segmented range of IP addresses within a VPC. Subnets allow you to partition your VPC's IP address space and place resources in different network segments. Each subnet resides entirely within one Availability Zone and can be designated as public (internet-accessible) or private (isolated).
+
+<img src="../teory_of_VPC/images/subnet.png" width="95%" alt="VPC Subnets">
+
+Subnets are like different floors in a building, in which the ground floor is the public subnet with doors to the street, so visitors can come in. Then the basement floor would be a private subnet has no street doors, it's only for people already inside the building. You put your web servers on the ground floor and your secret database in the basement.
+
+##### Key Points:
+* **Public Subnet:**Has a route to Internet Gateway, resources get public IPs
+* **Private Subnet:**No direct internet access, resources only have private IPs
+* **One AZ:**Each subnet lives in exactly one Availability Zone
+* **CIDR Block:**Each subnet has its own IP range (e.g., 10.0.1.0/24)
 
 ### b) INTERNET GATWAY 
 
