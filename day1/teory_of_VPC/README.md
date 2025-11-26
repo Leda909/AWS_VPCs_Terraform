@@ -13,9 +13,11 @@ You have complete control over your virtual networking environment, including:
 **Proffessional def.**:
 A VPC is a software-defined network within Cloud that provides isolated network infrastructure. It enables organizations to architect multi-tier applications with granular control over network topology, IP addressing (IPv4 and IPv6), routing policies, and security controls through Security Groups and Network ACLs. VPCs support hybrid cloud architectures via VPN and Direct Connect, enable service-to-service communication through VPC endpoints, and maintain network isolation through logical segmentation across availability zones for high availability and fault tolerance.
 
-### Example of (AMI) Node App EC2 connected to (AMI) MongoDB EC2
+### Example of Node App EC2 connected to MongoDB EC2 (in both case use IAM EC2)
 
-<div style="display: flex; justify-content: space-around;">
+<img src="../teory_of_VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 130%;">
+
+<!-- <div style="display: flex; justify-content: space-around;">
     <figure style="margin: 5px;">
         <img src="../teory_of_VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 90%;">
         <figcaption style="text-align: center;">Road map of net to Node App with DB</figcaption>
@@ -27,7 +29,7 @@ A VPC is a software-defined network within Cloud that provides isolated network 
     <figure style="margin: 5px;">
         <img src="../teory_of_VPC/images/VPC_4.png" width="90%" alt="What is VPC"><figcaption style="text-align: center;">Diagram of Node.js and MongoDB in a VPC</figcaption>
     </figure>
-</div>
+</div> -->
 
 #### **Why This Architecture Works:**
 <ul>
@@ -89,7 +91,7 @@ A VPC is a software-defined network within Cloud that provides isolated network 
 
 Every AWS account comes with a default VPC in each region. Here's what it includes:
 
-<img src="../teory_of_VPC/images/VPC_default_5.png" width="50%" alt="Default VPC" style="margin: 20px">
+<img src="../teory_of_VPC/images/VPC_default_5.png" width="40%" alt="Default VPC" style="margin: 20px">
 
 ## The core components:
 
