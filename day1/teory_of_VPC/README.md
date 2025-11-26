@@ -73,64 +73,65 @@ Every AWS account comes with a default VPC in each region. Here's what it includ
 
 <img src="../teory_of_VPC/images/VPC_default_5.png" width="40%" alt="Default VPC" style="margin: 20px">
 
-## The core components:
+# The core components:
 
 ## a) SUBNET
 
 A **subnet** is a segmented range of IP addresses within a VPC. Subnets allow you to partition your VPC's IP address space and place resources in different network segments. Each subnet resides entirely within one Availability Zone and can be designated as public (internet-accessible) or private (isolated).
 
-<img src="../teory_of_VPC/images/subnet.png" width="95%" alt="VPC Subnets">
+<img src="../teory_of_VPC/images/subnet.png" width="80%" alt="VPC Subnets">
 
 Subnets are like different floors in a building, in which the ground floor is the public subnet with doors to the street, so visitors can come in. Then the basement floor would be a private subnet has no street doors, it's only for people already inside the building. You put your web servers on the ground floor and your secret database in the basement.
 
 ##### Key Points:
-* **Public Subnet:**Has a route to Internet Gateway, resources get public IPs
-* **Private Subnet:**No direct internet access, resources only have private IPs
-* **One AZ:**Each subnet lives in exactly one Availability Zone
-* **CIDR Block:**Each subnet has its own IP range (e.g., 10.0.1.0/24)
+* Public Subnet:<br>Has a route to Internet Gateway, resources get public IPs
+* Private Subnet:<br>No direct internet access, resources only have private IPs
+* One AZ:<br>Each subnet lives in exactly one Availability Zone
+* CIDR Block:<br>Each subnet has its own IP range (e.g., 10.0.1.0/24)
 
-### b) INTERNET GATWAY 
+## b) INTERNET GATWAY 
 
-<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
-    <figure style="margin: 0; flex: 1; text-align: center;">
-        <img src="../teory_of_VPC/images/ING_1.png" width="95%" alt="VPC Subnets">
-        <figcaption style="margin: 5px; text-align: left;">Example Internet Gateway:</figcaption>
-        <img src="../teory_of_VPC/images/ING_2.png" width="55%" alt="VPC Subnets">
-    </figure>
-    <div style="margin: 0; flex: 2;">
-        An <snap style="font-weight: bold;">Internet Gateway (IGW)</snap> is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. It performs Network Address Translation (NAT) for instances with public IPv4 addresses and enables both inbound and outbound internet traffic.
-        <div style="margin: 15px 0;">Symbolic simple: The Internet Gateway is like the main door to your house (VPC)! Without this door, you're stuck inside with no way to talk to the outside world!</div>
-        <div style="margin: 5px; font-weight: bold;">Key Points:</div>
-        <ul>
-            <li><snap style="font-weight: bold;">One per VPC:</snap> You can only attach one IGW to a VPC</li>
-            <li><snap style="font-weight: bold;">Bidirectional:</snap> Allows both inbound and outbound traffic</li>
-            <li><snap style="font-weight: bold;">Scalable:</snap> Automatically scales, no bandwidth constraints</li>
-            <li><snap style="font-weight: bold;">Free:</snap> No charge for the IGW itself (only data transfer)</li>
-        </ul>
-    </div>
-</div>
+An **Internet Gateway (IGW)** is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. It performs Network Address Translation (NAT) for instances with public IPv4 addresses and enables both inbound and outbound internet traffic.
 
-### c) ROUTE TABLES
+<img src="../teory_of_VPC/images/IGW.png" width="80%" alt="Internet GateWay">
 
-<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
-    <figure style="margin: 0; flex: 1; text-align: center;">
-        <img src="../teory_of_VPC/images/RT_1.png" width="60%" alt="VPC Subnets">
-        <figcaption style="margin: 5px; text-align: left;">Example Route Tables:</figcaption>
-        <img src="../teory_of_VPC/images/RT_2.png" width="80%" alt="VPC Subnets">
-        <img src="../teory_of_VPC/images/RT_3.png" width="80%" alt="VPC Subnets">
-    </figure>
-    <div style="margin: 0; flex: 2;">
-        A <snap style="font-weight: bold;">Route Tables</snap> contains a set of rules (routes) that determine where network traffic from your subnet or gateway is directed. Each route specifies a destination CIDR block and a target (e.g., Internet Gateway, NAT Gateway, VPC Peering connection). Every subnet must be associated with a route table.
-        <div style="margin: 15px 0;">Symbolic simple: A Route Table is like a GPS or map with directions! When a letter (data packet) needs to go somewhere, it checks the route table: "Should I go to the neighbor's house (local VPC)? Or through the front door to the mailbox (Internet Gateway)? </div>
-        <div style="margin: 5px; font-weight: bold;">Key Points:</div>
-        <ul>
-            <li><snap style="font-weight: bold;">One per VPC:</snap> You can only attach one IGW to a VPC</li>
-            <li><snap style="font-weight: bold;">Bidirectional:</snap> Allows both inbound and outbound traffic</li>
-            <li><snap style="font-weight: bold;">Scalable:</snap> Automatically scales, no bandwidth constraints</li>
-            <li><snap style="font-weight: bold;">Free:</snap> No charge for the IGW itself (only data transfer)</li>
-        </ul>
-    </div>
-</div>
+The Internet Gateway is like the main door to your house (VPC)! Without this door, you're stuck inside with no way to talk to the outside world!
+
+##### Key Points:
+* One per VPC:<br> You can only attach one IGW to a VPC
+* Bidirectional:<br> Allows both inbound and outbound traffic
+* Scalable:<br> Automatically scales, no bandwidth constraints
+* Free:<br> No charge for the IGW itself (only data transfer)
+
+## c) ROUTE TABLES
+
+A **Route Tables** contains a set of rules (routes) that determine where network traffic from your subnet or gateway is directed. Each route specifies a destination CIDR block and a target (e.g., Internet Gateway, NAT Gateway, VPC Peering connection). Every subnet must be associated with a route table.
+
+<img src="../teory_of_VPC/images/RT.png" width="60%" alt="Route Tables">
+
+A Route Table is like a GPS or map with directions! When a letter (data packet) needs to go somewhere, it checks the route table: "Should I go to the neighbor's house (local VPC)? Or through the front door to the mailbox (Internet Gateway)? </div>
+       
+##### Key Points:
+* One per VPC:<br>You can only attach one IGW to a VPC
+* Bidirectional:<br> Allows both inbound and outbound traffic
+* Scalable:<br>Automatically scales, no bandwidth constraints
+* Free:<br>No charge for the IGW itself (only data transfer)
+
+## d) A NAT (Network Address Translation) Gateway / NAT INSTANCE
+
+A **NAT (Network Address Translation) Gateway** enables instances in private subnets to initiate outbound connections to the internet while preventing inbound connections initiated from the internet. It performs port address translation, allowing multiple private instances to share a single public IP address for outbound traffic.
+
+<img src="../teory_of_VPC/images/NAT.png" width="80%" alt="Network Address Translation">
+
+NAT Gateway helps to connect for your private subnet with the internet - eg. download updates - however, it not allows net to connect to private subnet.
+
+##### Key Points:
+
+* One-way traffic:<br>Outbound only, no inbound connections
+* Located in public subnet:<br>Needs public IP to reach internet
+* Managed service:<br> AWS-managed (NAT Gateway) vs self-managed (NAT Instance)
+* High availability:<br> Use one per AZ for redundancy
+
 
 
 IP addresses:
@@ -185,3 +186,6 @@ Some ideas:
 - Make SG rules only allow specific IP address for the db connection
 
 If you do these or find other ways to improve security then please be open to sharing them tomorrow morning.
+
+
+https://blog.cloudcraft.co/
