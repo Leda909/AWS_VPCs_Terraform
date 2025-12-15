@@ -20,6 +20,10 @@ Follow inst. ac image
 
 Assing to the created VPC `se-adel-2tier-vpc`
 
+To keep it simple, now we just picked up one availability zone to each subnet:<br>
+public-subnet: `eu-west-1a`<br>
+private-subnet: `eu-west-1b`
+
 <img src="../1_create_VPC/images/create_subnet_vpc_1.png" width="60%" alt="Create VPC">
 
 Create *Public Subnet*
