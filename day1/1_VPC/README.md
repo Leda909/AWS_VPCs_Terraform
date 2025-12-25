@@ -8,16 +8,14 @@ You have complete control over your virtual networking environment, including:
 * Configuration of route tables and network gateways
 * Security settings at multiple layers
 
-<img src="../1
-_VPC/images/VPC_1.png" width="70%" alt="What is VPC" style="margin: 20px 100px">
+<img src="../1_VPC/images/VPC_1.png" width="70%" alt="What is VPC" style="margin: 20px 100px">
 
 **Proffessional def.**:
 A VPC is a software-defined network within Cloud that provides isolated network infrastructure. It enables organizations to architect multi-tier applications with granular control over network topology, IP addressing (IPv4 and IPv6), routing policies, and security controls through Security Groups and Network ACLs. VPCs support hybrid cloud architectures via VPN and Direct Connect, enable service-to-service communication through VPC endpoints, and maintain network isolation through logical segmentation across availability zones for high availability and fault tolerance.
 
 ### Example of Node App EC2 connected to MongoDB EC2 (in both case use IAM EC2)
 
-<img src="../1
-_VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 150%;">
+<img src="../1_VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 150%;">
 
 #### **Why This Architecture Works?**
 
@@ -73,8 +71,7 @@ _VPC/images/VPC_2.png" alt="Image 1 Description" style="width: 150%;">
 
 Every AWS account comes with a default VPC in each region. Here's what it includes:
 
-<img src="../1
-_VPC/images/VPC_default_5.png" width="40%" alt="Default VPC" style="margin: 20px">
+<img src="../1_VPC/images/VPC_default_5.png" width="40%" alt="Default VPC" style="margin: 20px">
 
 # The core components:
 
@@ -82,8 +79,7 @@ _VPC/images/VPC_default_5.png" width="40%" alt="Default VPC" style="margin: 20px
 
 A **subnet** is a segmented range of IP addresses within a VPC. Subnets allow you to partition your VPC's IP address space and place resources in different network segments. Each subnet resides entirely within one Availability Zone and can be designated as public (internet-accessible) or private (isolated).
 
-<img src="../1
-_VPC/images/subnet.png" width="80%" alt="VPC Subnets">
+<img src="../1_VPC/images/subnet.png" width="80%" alt="VPC Subnets">
 
 Subnets are like different floors in a building, in which the ground floor is the public subnet with doors to the street, so visitors can come in. Then the basement floor would be a private subnet has no street doors, it's only for people already inside the building. You put your web servers on the ground floor and your secret database in the basement.
 
@@ -97,8 +93,7 @@ Subnets are like different floors in a building, in which the ground floor is th
 
 An **Internet Gateway (IGW)** is a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. It performs Network Address Translation (NAT) for instances with public IPv4 addresses and enables both inbound and outbound internet traffic.
 
-<img src="../1
-_VPC/images/IGW.png" width="80%" alt="Internet GateWay">
+<img src="../1_VPC/images/IGW.png" width="80%" alt="Internet GateWay">
 
 The Internet Gateway is like the main door to your house (VPC)! Without this door, you're stuck inside with no way to talk to the outside world!
 
@@ -112,8 +107,7 @@ The Internet Gateway is like the main door to your house (VPC)! Without this doo
 
 A **Route Tables** contains a set of rules (routes) that determine where network traffic from your subnet or gateway is directed. Each route specifies a destination CIDR block and a target (e.g., Internet Gateway, NAT Gateway, VPC Peering connection). Every subnet must be associated with a route table.
 
-<img src="../1
-_VPC/images/RT.png" width="70%" alt="Route Tables">
+<img src="../1_VPC/images/RT.png" width="70%" alt="Route Tables">
 
 A Route Table is like a GPS or map with directions! When a letter (data packet) needs to go somewhere, it checks the route table: "Should I go to the neighbor's house (local VPC)? Or through the front door to the mailbox (Internet Gateway)? </div>
        
@@ -127,8 +121,7 @@ A Route Table is like a GPS or map with directions! When a letter (data packet) 
 
 A **NAT (Network Address Translation) Gateway** enables instances in private subnets to initiate outbound connections to the internet while preventing inbound connections initiated from the internet. It performs port address translation, allowing multiple private instances to share a single public IP address for outbound traffic.
 
-<img src="../1
-_VPC/images/NAT.png" width="80%" alt="Network Address Translation">
+<img src="../1_VPC/images/NAT.png" width="80%" alt="Network Address Translation">
 
 NAT Gateway helps to connect for your private subnet with the (global)internet - eg. download updates - however, it not allows net to connect to private subnet. For instance, it's like a *mailslot* on your bedroom, you can write a letter and post to the world, however the postman can NOT push letter into your room. only works one way! This keeps your bedroom private and safe!
 
@@ -144,8 +137,7 @@ NAT Gateway helps to connect for your private subnet with the (global)internet -
 A **Security Group** acts as a virtual firewall at the instance level (specifically at the Elastic Network Interface). It controls inbound and outbound traffic using allow rules only. Security Groups are stateful - if you allow an inbound request, the response is automatically allowed regardless of outbound rules.<br>
 Security Groups are like a whitelist - everything is denied by default, and you explicitly allow what's needed. They're **stateful**, meaning if I allow incoming traffic on port 443, the response traffic is automatically allowed without needing an outbound rule
 
-<img src="../1
-_VPC/images/security_groups.png" width="80%" alt="Network Address Translation">
+<img src="../1_VPC/images/security_groups.png" width="80%" alt="Network Address Translation">
 
 It's like a personal bodyguard who knows the list of allowed people that can come in. If (allowed IP) welcome and lets them AND remembers them, so when they leave later, they don't need to be checked again. However, strainger can not get in.
 
@@ -160,8 +152,7 @@ It's like a personal bodyguard who knows the list of allowed people that can com
 
 **Network Access Control Lists (NACLs)** are stateless firewalls that operate at the subnet level. They evaluate rules in numerical order and support both ALLOW and DENY rules. Unlike Security Groups, NACLs are **stateless** - return traffic must be explicitly allowed.
 
-<img src="../1
-_VPC/images/NALs.png" width="90%" alt="Network Address Translation">
+<img src="../1_VPC/images/NALs.png" width="90%" alt="Network Address Translation">
 
 NACLs are like a fence around your entire neighborhood (subnet)! The fence has a gatekeeper who checks EVERY person going in AND out with a rulebook. Even if someone was let in earlier, they need to be checked AGAIN when leaving. The gatekeeper follows rules in order
 
@@ -173,8 +164,7 @@ NACLs are like a fence around your entire neighborhood (subnet)! The fence has a
 * ALLOW & DENY: <br>Can explicitly deny traffic
 
 ### Security Groups VS NALs
-<img src="../1
-_VPC/images/security_groups_vs_NALs.png" width="50%" alt="Network Address Translation">
+<img src="../1_VPC/images/security_groups_vs_NALs.png" width="50%" alt="Network Address Translation">
 
 ##### Use Case
 Use NACLs as a second layer of defense. Block entire IP ranges at the subnet level if they're known malicious sources, while Security Groups handle fine-grained instance-level control.
@@ -183,8 +173,7 @@ Use NACLs as a second layer of defense. Block entire IP ranges at the subnet lev
 
 **VPC Endpoints** enable private connectivity between your VPC and supported AWS services without requiring an Internet Gateway, NAT device, VPN connection, or AWS Direct Connect. Traffic between your VPC and AWS services stays within the AWS network, improving security and reducing data transfer costs.
 
-<img src="../1
-_VPC/images/vpc-endpoints.png" width="40%" alt="Network Address Translation">
+<img src="../1_VPC/images/vpc-endpoints.png" width="40%" alt="Network Address Translation">
 
 Imagine you need milk from the store (AWS service like S3). WITHOUT a VPC Endpoint, you have to walk through your front door, down the street, to the store, and back - that's a long trip! WITH a VPC Endpoint, it's like having a secret tunnel directly from your basement to the store's back room - much faster, safer, and you don't need to go outside at all!
 
@@ -219,8 +208,7 @@ Imagine you need milk from the store (AWS service like S3). WITHOUT a VPC Endpoi
 
 **VPC Peering** is a networking connection between two VPCs that enables routing traffic between them using private IPv4 or IPv6 addresses. Instances in either VPC can communicate as if they're within the same network. VPC Peering connections are not transitive; you must establish a direct peering connection between each pair of VPCs.
 
-<img src="../1
-_VPC/images/vpc-peering.png" width="40%" alt="Network Address Translation">
+<img src="../1_VPC/images/vpc-peering.png" width="40%" alt="Network Address Translation">
 
 VPC Peering is like having two houses connected by a private bridge! Instead of going through the street (internet) to visit your friend's house (another VPC), you can walk directly across your private bridge. But here's the catch: if House A has a bridge to House B, and House B has a bridge to House C, people in House A CAN'T walk through House B to get to House C - each pair needs their own bridge!
 
@@ -253,8 +241,7 @@ VPC Peering is like having two houses connected by a private bridge! Instead of 
 
 **VPC Flow Logs** capture information about IP traffic going to and from network interfaces in your VPC. Flow log data is published to CloudWatch Logs, Amazon S3, or Amazon Kinesis Data Firehose. They're essential for network monitoring, troubleshooting connectivity issues, security analysis, and compliance auditing.
 
-<img src="../1
-_VPC/images/vpc-flow-logs.png" width="40%" alt="Network Address Translation">
+<img src="../1_VPC/images/vpc-flow-logs.png" width="40%" alt="Network Address Translation">
 
 VPC Flow Logs are like a security camera recording everything that happens at your house! It writes down: "At 2pm, a car with license plate XYZ tried to enter the driveway - ALLOWED. At 3pm, a stranger tried the door - BLOCKED." Later, if something goes wrong, you can watch the recording to see exactly what happened!
 
@@ -290,8 +277,7 @@ A: Check flow logs:
 
 **CIDR (Classless Inter-Domain Routing)** notation is a method for specifying IP address ranges. The format IP/prefix indicates the network address and the number of significant bits. For example, 10.0.0.0/16 means the first 16 bits are fixed (network), leaving 16 bits for hosts (2^16 = 65,536 addresses).
 
-<img src="../1
-_VPC/images/cidr-blocks.png" width="40%" alt="Network Address Translation">
+<img src="../1_VPC/images/cidr-blocks.png" width="40%" alt="Network Address Translation">
 
 CIDR is like a phone area code! The number 555-0000/3 means "all phone numbers that start with 555." The /3 tells you how many numbers at the start are fixed. In the VPC world, 10.0.0.0/16 means "all IP addresses that start with 10.0" - that gives you 65,536 different addresses to use for your computers! 
 Computers use the binary system, every free bit (position) represents two possibilities (0 or 1). If you have 16 free bits, then the number of combinations is $2^{16}$ = 65 536
