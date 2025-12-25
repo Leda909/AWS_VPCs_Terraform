@@ -22,6 +22,7 @@ Level = Intermediate
 
 ## 4. Terraform
 
-[Hashicorp Certified: Terraform Associate (003)](https://developer.hashicorp.com/certifications/infrastructure-automation)
+[Hashicorp Certified: Terraform Associate (003)](https://developer.hashicorp.com/certifications/infrastructure-automation)<br>
 Cost = $70,
 Level = Beginner
+
