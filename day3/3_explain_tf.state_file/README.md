@@ -2,6 +2,8 @@
 
 When you run terraform in your machine it will automaticaly create a tf.state file
 
+<img src="../3_explain_tf.state_file/images/remote_tf.state.png" width="70%" alt="Remote tf.state file">
+
 ### What is the Terraform State File?
 
 The **terraform.tfstate** file is a JSON-formatted file that Terraform automatically creates and maintains to keep track of the current state of your infrastructure.<br> 
@@ -68,9 +70,7 @@ The Terraform state file is highly sensitive for multiple critical reasons:
 * Challenge 5: Backup and Recovery
     * Problem: State file loss = loss of infrastructure management capability
     * Risk: Without state, Terraform can't manage existing resources
-
-<br><br>
-<img src="../3_tf.state_file/images/remote_tf.state.png" width="50%" alt="Remote tf.state file">
+<br>
 
 ### Best Practices To address these Collaborative Work Challenges, teams should:
 
